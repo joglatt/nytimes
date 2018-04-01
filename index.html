@@ -89,11 +89,16 @@
 
                 var results = response.response.docs;
                 for (var i = 0; i < results.length; i++) {
-                    var url = results[i].web_url;
-                    var snippet = results[i].snippet;
-                    var headline = results[i].headline.main;
+                    var url = $("<div>").text(results[i].web_url);
+                    var snippet = $("<p>").text(results[i].snippet);
+                    var headline = $("<h2>").text(results[i].headline.main);
                     console.log(url, snippet, headline)
-                
+                    var linkDiv = $("<div>");
+                    linkDiv.append(headline);
+                    linkDiv.append(snippet);
+                    linkDiv.append(url);
+
+                    $("#topArticles").prepend(linkDiv);
                 }
             });
         });
